@@ -1,0 +1,37 @@
+app.jsx
+
+import { useState } from 'react';
+
+function Student(props) {
+    return <h2>Student Name: {props.name}</h2>;
+}
+
+function App() {
+    const [count, setCount] = useState(0);
+
+    return (
+        <div>
+            <Student name="Sujitha" />
+
+            <h3>Counter: {count}</h3>
+
+            <button onClick={() => setCount(count + 1)}>
+                Increment
+            </button>
+
+            <button onClick={() => setCount(count - 1)}>
+                Decrement
+            </button>
+        </div>
+    );
+}
+
+export default App;
+
+main.jsx
+
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './App.jsx';
+
+createRoot(document.getElementById('root')).render(<App />);
