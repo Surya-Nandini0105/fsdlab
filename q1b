@@ -18,7 +18,7 @@ app.get('/students', (req, res) => {
 });
 
 app.delete('/students/:id', (req, res) => {
-  students = students.filter(s => s.id != req.params.id);
+  students = students.filter(s => s && s.id != req.params.id);
   res.send("Student Deleted Successfully");
 });
 
