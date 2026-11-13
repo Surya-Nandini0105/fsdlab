@@ -1,0 +1,40 @@
+app.js
+
+
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+let items = [];
+let id = 1;
+
+// Accept data using POST
+app.post('/items', (req, res) => {
+    const item = { id: id++, name: req.body.name };
+    items.push(item);
+    res.status(201).json(item);
+});
+
+// Retrieve all items using GET
+app.get('/items', (req, res) => {
+    res.json(items);
+});
+
+// Delete an item using DELETE
+app.delete('/items/:id', (req, res) => {
+    const index = items.findIndex(
+        item => item.id === Number(req.params.id)
+    );
+
+    if (index === -1) {
+        return res.status(404).send('Item not found');
+    }
+
+    items.splice(index, 1);
+    res.send('Item deleted successfully');
+});
+
+app.listen(3000, () => {
+    console.log('Server running at http://localhost:3000');
+});
