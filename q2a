@@ -19,3 +19,36 @@ app.get('/', (req, res) => {
 app.listen(3000, () => {
     console.log('Server running on port 3000');
 });
+
+home.ejs in views folder
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Details</title>
+</head>
+<body>
+    <h1>Student Details</h1>
+
+    <p>Name:
+        <%= student.name %>
+    </p>
+
+    <p>Course:
+        <%= student.course %>
+    </p>
+
+    <p>Marks:
+        <%= student.marks %>
+    </p>
+
+</body>
+</html>
+
+
+commands 
+mkdir and cd
+npm.cmd init -y
+npm.cmd install express express-session cookie-parser
+npm.cmd install ejs
+node app.js
