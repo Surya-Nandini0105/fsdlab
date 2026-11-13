@@ -1,38 +1,28 @@
-app.js
-
+app.js 
 
 const express = require('express');
 const app = express();
 
-app.use(express.json());
-
-let items = [];
-let id = 1;
-
-// Accept data using POST
-app.post('/items', (req, res) => {
-    const item = { id: id++, name: req.body.name };
-    items.push(item);
-    res.status(201).json(item);
+app.get('/', (req, res) => {
+    res.send('Welcome to ExpressJS');
 });
 
-// Retrieve all items using GET
-app.get('/items', (req, res) => {
-    res.json(items);
+app.get('/about', (req, res) => {
+    res.send('This is the About page');
 });
 
-// Delete an item using DELETE
-app.delete('/items/:id', (req, res) => {
-    const index = items.findIndex(
-        item => item.id === Number(req.params.id)
-    );
+// Route parameter
+app.get('/user/:id', (req, res) => {
+    res.send('User ID: ' + req.params.id);
+});
 
-    if (index === -1) {
-        return res.status(404).send('Item not found');
-    }
+// Query parameter
+app.get('/search', (req, res) => {
+    res.send('Search: ' + req.query.name);
+});
 
-    items.splice(index, 1);
-    res.send('Item deleted successfully');
+app.get('/url', (req, res) => {
+    res.send('URL: ' + req.protocol + '://' + req.get('host') + req.originalUrl);
 });
 
 app.listen(3000, () => {
